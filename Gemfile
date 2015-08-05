@@ -16,14 +16,14 @@ group :test, :development do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'pry-coolline'
+  gem 'factory_girl'
+  gem 'forgery'
 
   gem 'web-console', '~> 2.0'
 end
 
 group :test do
   gem 'rspec-rails'
-  gem 'factory_girl'
-  gem 'forgery'
   gem 'capybara'
   gem 'poltergeist'
 
