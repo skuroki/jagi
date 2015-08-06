@@ -12,6 +12,7 @@ class UserProfilesController < ApplicationController
 
     result = @user_profile.update_attributes(user_profile_params)
     if result
+      flash[:notice] = I18n.t('user_profiles.update.flash_edited')
       redirect_to user_profile_path(@user_profile)
     else
       render :edit
