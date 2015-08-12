@@ -1,9 +1,6 @@
 class UserProfile < ActiveRecord::Base
   belongs_to :user
+  delegate :name, to: :user
   validates :user_id, presence: true, numericality: true, uniqueness: true
-  validates :first_name, length: { maximum: 30 }
-  validates :first_name, presence: true
-  validates :last_name, length: { maximum: 30 }
-  validates :last_name, presence: true
   validates :answer_name, length: { maximum: 30 }
 end

@@ -19,10 +19,10 @@ RSpec.describe User, type: :model do
     context 'when user not exists' do
       it { expect(subject.uid).to eq oauth_user.uid.to_s }
       it { expect(subject.email).to eq oauth_user.info.email }
-      it { expect(subject.user_profile.first_name).to eq oauth_user.name }
+      it { expect(subject.name).to eq oauth_user.name }
 
       it 'create user' do
-        expect { subject }.to change{ UserProfile.count }.by(1).and change{ User.count }.by(1)
+        expect { subject }.to change{ User.count }.by(1).and change{ UserProfile.count }.by(1)
       end
     end
  end

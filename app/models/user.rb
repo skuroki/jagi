@@ -18,8 +18,6 @@ class User < ActiveRecord::Base
         )
         UserProfile.create!(
           user_id: user.id,
-          last_name: 'a',
-          first_name: user.name,
         )
       end
     end

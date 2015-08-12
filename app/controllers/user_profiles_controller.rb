@@ -20,7 +20,7 @@ class UserProfilesController < ApplicationController
   private
 
   def user_profile_params
-    params.require(:user_profile).permit(:last_name, :first_name, :answer_name)
+    params.require(:user_profile).permit(:answer_name)
   end
 
   def require_logged_in
