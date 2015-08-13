@@ -6,8 +6,3 @@ ja:
   layouts:
     application:
       submit_profile: "プロフィール登録"
-
-  devise:
-    omniauth_callbacks:
-      success: "Googleでログインしました。"
-
