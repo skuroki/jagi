@@ -11,7 +11,7 @@ RSpec.describe User, type: :model do
       let!(:user) { FactoryGirl.create :user, email: oauth_user.info.email, uid: oauth_user.uid }
       it { expect(subject.uid).to eq oauth_user.uid.to_s }
       it { expect(subject.email).to eq oauth_user.info.email }
-      it 'create user' do
+      it 'create no user' do
         expect { subject }.to change{ User.count }.by(0)
       end
     end
@@ -19,8 +19,10 @@ RSpec.describe User, type: :model do
     context 'when user not exists' do
       it { expect(subject.uid).to eq oauth_user.uid.to_s }
       it { expect(subject.email).to eq oauth_user.info.email }
-      it 'create no user' do
-        expect { subject }.to change{ User.count }.by(1)
+      it { expect(subject.user_profile.first_name).to eq oauth_user.name }
+
+      it 'create user' do
+        expect { subject }.to change{ UserProfile.count }.by(1).and change{ User.count }.by(1)
       end
     end
  end

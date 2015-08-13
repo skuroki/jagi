@@ -7,14 +7,21 @@ class User < ActiveRecord::Base
     user = User.find_by(email: auth.info.email)
 
     unless user
-      user = User.create(
-        name:     auth.info.name,
-        provider: auth.provider,
-        uid:      auth.uid,
-        email:    auth.info.email,
-        token:    auth.credentials.token,
-        password: Devise.friendly_token[0, 20]
-      )
+      ActiveRecord::Base.transaction do
+        user = User.create!(
+          name:     auth.info.name,
+          provider: auth.provider,
+          uid:      auth.uid,
+          email:    auth.info.email,
+          token:    auth.credentials.token,
+          password: Devise.friendly_token[0, 20]
+        )
+        UserProfile.create!(
+          user_id: user.id,
+          last_name: 'a',
+          first_name: user.name,
+        )
+      end
     end
     user
   end
