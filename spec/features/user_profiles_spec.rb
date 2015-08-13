@@ -21,10 +21,8 @@ feature '登録者のプロフィール', type: :feature do
       click_on I18n.t('helpers.submit.update')
 
       expect(current_path).to eq edit_user_profile_path(user_profile)
-
       expect(page).to have_content I18n.t('user_profiles.update.flash_edited')
       expect(page).to have_field 'user_profile_answer_name', new_answer_name
-
       expect(UserProfile.find(user_profile.id).answer_name).to eq new_answer_name
     end
   end
