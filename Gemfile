@@ -12,6 +12,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'carrierwave'
+gem 'rmagick'
 
 group :test, :development do
   gem 'spring'
@@ -24,6 +26,7 @@ group :test, :development do
   gem 'dotenv-rails'
 
   gem 'web-console', '~> 2.0'
+  gem 'fastimage'
 end
 
 group :test do
