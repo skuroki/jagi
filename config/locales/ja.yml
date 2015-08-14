@@ -6,3 +6,8 @@ ja:
   layouts:
     application:
       submit_profile: "プロフィール登録"
+
+  pages:
+    index:
+      start_quiz: "クイズを始める"
+      can_not_start_quiz: "出題できるユーザーがいないため、今はクイズを始められません。"
