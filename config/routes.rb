@@ -3,6 +3,11 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
   resources :user_profiles, only: [:edit, :update]
-  resources :page, only: [:index]
+  resource :page, only: [:index]
+  resource :quiz, only: [:show] do
+    member do
+      post :answer
+    end
+  end
   root to: "page#index"
 end

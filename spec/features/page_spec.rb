@@ -21,6 +21,10 @@ feature "top page", type: :feature do
         expect(page).to have_content login_user.uid
         expect(page).to have_content login_user.email
       end
+
+      scenario 'クイズ開始リンクが表示される' do
+        expect(page).to have_link 'クイズを始める', quiz_path
+      end
     end
   end
 end

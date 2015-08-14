@@ -1,0 +1,9 @@
+<div style="border:1px solid black; width: 300px; height: 300px;" id="user_image"></div>
+<%= @user_profile.answer_name %>
+
+<%= form_tag answer_quiz_path do |f| %>
+  <%= hidden_field_tag :answer_user_id, @user_profile.id %>
+  <%= label_tag :answer_user_name %>
+  <%= text_field_tag :answer_user_name %>
+  <%= submit_tag :answer %>
+<% end %>
