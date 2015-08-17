@@ -21,12 +21,12 @@ class QuizzesController < ApplicationController
 
   def case_correct
     create_answer_history(true, params[:answer_user_name], current_user.user_profile.id, params[:answer_user_id])
-    flash[:notice] = '正解！'
+    flash[:notice] = I18n.t("quiz.show.correct_result")
   end
 
   def case_incorrect
     create_answer_history(false, params[:answer_user_name], current_user.user_profile.id, params[:answer_user_id])
-    flash[:notice] = "不正解! 答えは#{@answer_user_profile.answer_name.to_s}です。"
+    flash[:notice] = I18n.t("quiz.show.incorrect_result", answer_name: @answer_user_profile.answer_name)
   end
 
   def create_answer_history(correct, answer, user_profile_id, to_user_profile_id)

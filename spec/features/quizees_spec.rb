@@ -28,11 +28,11 @@ feature "quiz page", type: :feature do
         end
 
         scenario '回答したら結果が表示される' do
-          expect(page).not_to have_css('div.notice', text: '不正解')
+          expect(page).not_to have_css('div.notice', text: I18n.t('quiz.show.incorrect'))
         end
 
         scenario '回答履歴に正解が記録される' do
-          expect(page).to have_css('#total_correct', '正解')
+          expect(page).to have_css('#total_correct', I18n.t('quiz.show.correct'))
           expect(page).to have_css('#total_correct', text: '1')
 
           expect(login_user.user_profile.total_correct).to eq 1
@@ -50,11 +50,11 @@ feature "quiz page", type: :feature do
         end
 
         scenario '回答したら結果が表示される' do
-          expect(page).to have_css('div.notice', text: '不正解')
+          expect(page).to have_css('div.notice', text: I18n.t('quiz.show.incorrect_result', answer_name: answer_user_profile.answer_name))
         end
 
         scenario '回答履歴に不正解が記録される' do
-          expect(page).to have_css('#total_incorrect', '不正解')
+          expect(page).to have_css('#total_incorrect', I18n.t('quiz.show.incorrect'))
           expect(page).to have_css('#total_incorrect', text: '1')
 
           expect(login_user.user_profile.total_incorrect).to eq 1

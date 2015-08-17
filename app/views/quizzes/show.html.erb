@@ -10,9 +10,9 @@
 
 <div id="answer_results">
   <span id="total_correct">
-    正解: <%= @total_correct %>
+    <%= I18n.t('quiz.show.correct') %>: <%= @total_correct %>
   </span>
   <span id="total_incorrect">
-    不正解: <%= @total_incorrect %>
+    <%= I18n.t('quiz.show.incorrect') %>: <%= @total_incorrect %>
   </span>
 </div>
