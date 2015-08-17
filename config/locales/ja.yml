@@ -6,3 +6,15 @@ ja:
   layouts:
     application:
       submit_profile: "プロフィール登録"
+
+  pages:
+    index:
+      start_quiz: "クイズを始める"
+      can_not_start_quiz: "出題できるユーザーがいないため、今はクイズを始められません。"
+
+  quiz:
+    show:
+      correct: "正解"
+      incorrect: "不正解"
+      incorrect_result: "不正解！ 正解は「%{answer_name}」さんです"
+      no_answer_users: "ユーザーがひとりも登録されていません。"

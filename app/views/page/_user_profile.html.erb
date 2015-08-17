@@ -5,4 +5,8 @@
   <li><%= current_user.email %></li>
 </ul>
 
-<%= link_to 'クイズを始める', quiz_path %>
+<% if @start_button_enabled %>
+  <%= link_to I18n.t('pages.index.start_quiz'), quiz_path %>
+<% else %>
+  <%= I18n.t('pages.index.can_not_start_quiz') %>
+<% end %>
