@@ -16,11 +16,11 @@
   </div>
   <div>
     <%= f.label I18n.t('user_profiles.edit.project') %>
-    <%= f.select :project_id, options_from_collection_for_select(@projects, :id, :name, @user_profile.project_id), include_blank: true %>
+    <%= f.select :project_id, options_from_collection_for_select(projects, :id, :name, @user_profile.project_id), include_blank: true %>
   </div>
   <div>
     <%= f.label I18n.t('user_profiles.edit.group') %>
-    <%= f.select :group_id, options_from_collection_for_select(@groups, :id, :name, @user_profile.group_id), include_blank: true %>
+    <%= f.select :group_id, options_from_collection_for_select(groups, :id, :name, @user_profile.group_id), include_blank: true %>
   </div>
   <div>
     <%= f.label I18n.t('user_profiles.edit.joined_year') %>
