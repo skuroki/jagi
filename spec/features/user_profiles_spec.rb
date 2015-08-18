@@ -6,7 +6,7 @@ feature '登録者のプロフィール', type: :feature do
   feature 'プロフィールの編集' do
     let!(:user) { FactoryGirl.create :user, :with_user_profile }
     let!(:user_profile) { user.user_profile }
-    let!(:new_answer_name) { Forgery('name').name }
+    let!(:new_answer_name) { Forgery(:name).full_name }
 
     scenario 'プロフィールを表示できる' do
       visit edit_user_profile_path(user_profile)
