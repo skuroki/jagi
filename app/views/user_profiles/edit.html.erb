@@ -10,6 +10,26 @@
       <%= hidden_field "profile_image_#{situation}", :user_profile_id, value: @user_profile.id %>
     </div>
   <% end %>
+  <div>
+    <%= f.label I18n.t('user_profiles.edit.gender') %>
+    <%= f.select :gender, [[I18n.t('user_profiles.edit.male'), "male"], [I18n.t('user_profiles.edit.female'), "female"]], :selected => @user_profile.gender, include_blank: true %>
+  </div>
+  <div>
+    <%= f.label I18n.t('user_profiles.edit.project') %>
+    <%= f.select :project_id, options_from_collection_for_select(@projects, :id, :name, @user_profile.project_id), include_blank: true %>
+  </div>
+  <div>
+    <%= f.label I18n.t('user_profiles.edit.group') %>
+    <%= f.select :group_id, options_from_collection_for_select(@groups, :id, :name, @user_profile.group_id), include_blank: true %>
+  </div>
+  <div>
+    <%= f.label I18n.t('user_profiles.edit.joined_year') %>
+    <%= f.select :joined_year, @joined_years, selected: @user_profile.joined_year, include_blank: true %>
+  </div>
+  <div>
+    <%= f.label :detail, I18n.t('user_profiles.edit.detail') %>
+    <%= f.text_area :detail %>
+  </div>
   <%= f.submit %>
   </div>
 <% end %>

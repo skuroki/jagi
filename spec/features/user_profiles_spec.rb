@@ -6,7 +6,18 @@ feature '登録者のプロフィール', type: :feature do
   feature 'プロフィールの編集' do
     let!(:user) { FactoryGirl.create :user, :with_user_profile }
     let!(:user_profile) { user.user_profile }
+    let!(:projects) { FactoryGirl.create_list :project, 5 }
+    let!(:groups) { FactoryGirl.create_list :group, 5 }
+
     let!(:new_answer_name) { Forgery(:name).full_name }
+    let!(:new_joined_year) { "#{Time.zone.now.year}#{I18n.t('user_profiles.edit.year')}" }
+    let!(:new_project) { projects.sample.name }
+    let!(:new_group) { groups.sample.name }
+    let!(:new_gender) { I18n.t('user_profiles.edit.male') }
+    let!(:new_detail) { Forgery(:basic).text }
+
+    let!(:edited_message) { I18n.t('user_profiles.update.flash_edited') }
+    let!(:update_button) { I18n.t('helpers.submit.update') }
 
     scenario 'プロフィールを表示できる' do
       visit edit_user_profile_path(user_profile)
@@ -21,12 +32,26 @@ feature '登録者のプロフィール', type: :feature do
 
       scenario 'プロフィールが編集できる' do
         fill_in 'user_profile_answer_name', with: new_answer_name
-        click_on I18n.t('helpers.submit.update')
+        select new_gender, from: 'user_profile_gender'
+        select new_joined_year, from: 'user_profile_joined_year'
+        select new_group, from: 'user_profile_group_id'
+        select new_project, from: 'user_profile_project_id'
+        fill_in 'user_profile_detail', with: new_detail
+
+        click_on update_button
 
         expect(current_path).to eq edit_user_profile_path(user_profile)
-        expect(page).to have_content I18n.t('user_profiles.update.flash_edited')
+
         expect(page).to have_field 'user_profile_answer_name', new_answer_name
+        expect(page).to have_select('user_profile_joined_year', selected: new_joined_year)
+        expect(page).to have_select('user_profile_gender', selected: new_gender)
+        expect(page).to have_select('user_profile_project_id', selected: new_project )
+        expect(page).to have_select('user_profile_group_id', selected: new_group )
+        expect(page).to have_field 'user_profile_detail', new_detail
+        expect(page).to have_content edited_message
+
         expect(UserProfile.find(user_profile.id).answer_name).to eq new_answer_name
+        expect(UserProfile.find(user_profile.id).detail).to eq new_detail
       end
 
       context '画像が添付された場合' do
