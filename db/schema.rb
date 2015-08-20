@@ -11,13 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150813044043) do
+ActiveRecord::Schema.define(version: 20150814080251) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "user_profile_id",    limit: 4,   null: false
     t.integer "to_user_profile_id", limit: 4,   null: false
     t.boolean "correct",                        null: false
     t.string  "answer",             limit: 255
+  end
+
+  create_table "profile_images", force: :cascade do |t|
+    t.integer  "user_profile_id", limit: 4,   null: false
+    t.string   "image",           limit: 255, null: false
+    t.string   "situation",       limit: 255, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "user_profiles", force: :cascade do |t|
