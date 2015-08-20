@@ -1,5 +1,6 @@
 class UserProfile < ActiveRecord::Base
   belongs_to :user
+  has_many :profile_images
   delegate :name, to: :user
   validates :user_id, presence: true, numericality: true, uniqueness: true
   validates :answer_name, length: { maximum: 30 }

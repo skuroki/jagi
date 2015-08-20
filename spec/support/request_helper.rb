@@ -3,10 +3,10 @@ shared_context "setup_OmniAuth_config" do |service|
     OmniAuth.config.test_mode = true
 
     oauthinfo = {
-      uid:    Forgery('basic').number,
-      name:   Forgery('name').name,
-      email:  Forgery('email').address,
-      token:  Forgery('basic').encrypt,
+      uid:    Forgery(:basic).number,
+      name:   Forgery(:name).full_name,
+      email:  Forgery(:email).address,
+      token:  Forgery(:basic).encrypt,
     }
     OmniAuth.config.mock_auth[service] = OmniAuth::AuthHash.new(
       {

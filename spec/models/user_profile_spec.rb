@@ -2,5 +2,6 @@ require 'rails_helper'
 
 RSpec.describe UserProfile, type: :model do
   it { should belong_to(:user) }
+  it { should have_many(:profile_images) }
   it { should validate_length_of(:answer_name).is_at_most(30) }
 end

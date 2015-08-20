@@ -1,9 +1,9 @@
 class QuizzesController < ApplicationController
   def show
     @answer_user_profile = UserProfile.new.answer_user
-
     @total_correct = current_user.user_profile.total_correct
     @total_incorrect = current_user.user_profile.total_incorrect
+    @profile_image_normal = ProfileImage.find_by(situation: :normal, user_profile_id: @answer_user_profile.id)
   end
 
   def answer

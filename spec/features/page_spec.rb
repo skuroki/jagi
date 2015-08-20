@@ -25,6 +25,10 @@ feature "top page", type: :feature do
       scenario 'クイズ開始リンクが表示される' do
         expect(page).to have_link 'クイズを始める', quiz_path
       end
+
+      scenario 'プロフィール編集ページへの リンクが表示される' do
+        expect(page).to have_link I18n.t('pages.index.edit_profile'), edit_user_profile_path(login_user.user_profile.id)
+      end
     end
   end
 end

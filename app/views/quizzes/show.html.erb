@@ -1,4 +1,13 @@
-<div style="border:1px solid black; width: 300px; height: 300px;" id="user_image"></div>
+<div id="user_image">
+  <% if @profile_image_normal %>
+    <%= image_tag @profile_image_normal.image.url %>
+  <% end %>
+</div>
+
+<div>
+  <%= I18n.t('quiz.show.who') %>
+</div>
+
 <%= @answer_user_profile.answer_name %>
 
 <%= form_tag answer_quiz_path do |f| %>
