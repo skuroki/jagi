@@ -1,5 +1,6 @@
 class PageController < ApplicationController
   def index
-    @start_button_enabled = UserProfile.new.answer_user.present?
+    @projects = Project.all
+    @groups = Group.all
   end
 end

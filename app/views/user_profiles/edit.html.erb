@@ -24,7 +24,7 @@
   </div>
   <div>
     <%= f.label I18n.t('user_profiles.edit.joined_year') %>
-    <%= f.select :joined_year, @joined_years, selected: @user_profile.joined_year, include_blank: true %>
+    <%= f.select :joined_year, joined_years_selection, selected: @user_profile.joined_year, include_blank: true %>
   </div>
   <div>
     <%= f.label :detail, I18n.t('user_profiles.edit.detail') %>

@@ -4,11 +4,3 @@
   <li><%= current_user.uid %></li>
   <li><%= current_user.email %></li>
 </ul>
-
-<% if @start_button_enabled %>
-  <%= link_to I18n.t('pages.index.start_quiz'), quiz_path %>
-<% else %>
-  <%= I18n.t('pages.index.can_not_start_quiz') %>
-<% end %>
-
-<%= link_to I18n.t('pages.index.edit_profile'), edit_user_profile_path(current_user.user_profile.id) %>

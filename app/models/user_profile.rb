@@ -14,8 +14,32 @@ class UserProfile < ActiveRecord::Base
   validates :joined_year, allow_nil: true, numericality: true
   validates :detail, allow_nil: true, length: { maximum: 10000 }
 
-  def answer_user
-    self.class.all.sample
+  def self.for_filter_params
+    [:joined_year, :group_id, :project_id]
+  end
+
+  def self.answer_user(filter = {}, user_profile = {})
+    conditions = {}
+    not_where = {}
+
+    not_where[:answer_name] = nil
+    not_where[:id] = user_profile.id if user_profile.present?
+
+    conditions[:project_id] = filter['project_id'] if filter['project_id'].present?
+    conditions[:group_id] = filter['group_id'] if filter['group_id'].present?
+    conditions[:joined_year] = filter['joined_year'] if filter['joined_year'].present?
+
+    conditions[:id] = user_profile.review_mode_user_profile_ids if filter['review_mode'].present? && user_profile.present?
+
+    UserProfile.where(conditions).where.not(not_where).sample
+  end
+
+  def review_mode_user_profile_ids
+    # ActiveRecordでの書き方がわからない
+    sql_query = 'SELECT `answers`.*, SUM(correct=1) AS count_correct, SUM(correct=0) AS count_incorrect FROM answers WHERE user_profile_id = ? GROUP BY to_user_profile_id HAVING count_incorrect >= count_correct AND count_incorrect >= 1'
+
+    distincted_answers = Answer.find_by_sql([sql_query, self.id])
+    distincted_answers.map(&:to_user_profile_id)
   end
 
   def total_correct
@@ -26,3 +50,4 @@ class UserProfile < ActiveRecord::Base
     Answer.where(correct: false, user_profile_id: self.id).count
   end
 end
+
