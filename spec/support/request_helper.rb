@@ -1,9 +1,8 @@
 shared_context "setup_OmniAuth_config" do |service|
   before do
     OmniAuth.config.test_mode = true
-
     oauthinfo = {
-      uid:    Forgery(:basic).number,
+      uid:    Forgery(:basic).number(:at_least => 1, :at_most => 999999999999999999999),
       name:   Forgery(:name).full_name,
       email:  Forgery(:email).address,
       token:  Forgery(:basic).encrypt,
