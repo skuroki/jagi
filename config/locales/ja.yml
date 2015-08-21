@@ -1,9 +1,5 @@
 ja:
 
-  pages:
-    index:
-      edit_profile: "プロフィールを編集する"
-
   user_profiles:
     update:
       flash_edited: "編集しました。"
@@ -11,6 +7,7 @@ ja:
       normal_image: "普通の写真（出題時）"
       succeed_image: "相手が正解した時の写真"
       failed_image: "相手が不正解した時の写真"
+      answer_name: "正解"
 
   layouts:
     application:
@@ -21,6 +18,7 @@ ja:
       start_quiz: "クイズを始める"
       can_not_start_quiz: "出題できるユーザーがいないため、今はクイズを始められません。"
       edit_profile: "プロフィールを編集する"
+      please_login_with_google: "こんにちは！ まずはGoogleでログインしてください。"
 
   quiz:
     show:

@@ -8,7 +8,7 @@ feature "top page", type: :feature do
 
     context 'ログインしていない時' do
       scenario 'Googleへのログインリンクが表示される' do
-        expect(page).to have_link 'Googleでログイン', user_omniauth_authorize_path(:google_oauth2)
+        expect(page).to have_link I18n.t('pages.index.please_login_with_google'), user_omniauth_authorize_path(:google_oauth2)
       end
     end
 
