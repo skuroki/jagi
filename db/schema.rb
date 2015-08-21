@@ -11,13 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818101501) do
+ActiveRecord::Schema.define(version: 20150819053414) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "user_profile_id",    limit: 4,   null: false
     t.integer "to_user_profile_id", limit: 4,   null: false
     t.boolean "correct",                        null: false
     t.string  "answer",             limit: 255
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name", limit: 255, null: false
   end
 
   create_table "profile_images", force: :cascade do |t|
@@ -29,21 +33,23 @@ ActiveRecord::Schema.define(version: 20150818101501) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.integer "user_profile_id", limit: 4
-    t.string  "name",            limit: 255, null: false
+    t.string "name", limit: 255, null: false
   end
 
   create_table "user_profiles", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4,   null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "user_id",     limit: 4,     null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "answer_name", limit: 255
-    t.integer  "group_id",    limit: 4
-    t.integer  "project_id",  limit: 4
     t.string   "gender",      limit: 255
     t.integer  "joined_year", limit: 4
-    t.string   "detail",      limit: 255
+    t.text     "detail",      limit: 65535
+    t.integer  "project_id",  limit: 4
+    t.integer  "group_id",    limit: 4
   end
+
+  add_index "user_profiles", ["group_id"], name: "index_user_profiles_on_group_id", using: :btree
+  add_index "user_profiles", ["project_id"], name: "index_user_profiles_on_project_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                                      null: false
