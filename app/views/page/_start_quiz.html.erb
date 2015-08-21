@@ -5,11 +5,11 @@
   </div>
   <div>
     <%= label :project_id, I18n.t('pages.index.project') %>
-    <%= select_tag :project_id, options_from_collection_for_select(@projects, :id, :name, selected: params['project_id']), include_blank: true %>
+    <%= select_tag :project_id, options_from_collection_for_select(projects, :id, :name, selected: params['project_id']), include_blank: true %>
   </div>
   <div>
     <%= label :group_id, I18n.t('pages.index.group') %>
-    <%= select_tag :group_id, options_from_collection_for_select(@groups, :id, :name, selected: params['group_id']), include_blank: true %>
+    <%= select_tag :group_id, options_from_collection_for_select(groups, :id, :name, selected: params['group_id']), include_blank: true %>
   </div>
   <div>
     <label>
