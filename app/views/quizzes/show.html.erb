@@ -10,7 +10,7 @@
   <%= form_tag answer_quiz_path do |f| %>
     <%= hidden_field_tag :answer_user_id, @answer_user_profile.id %>
     <%= label_tag :answer_user_name %>
-    <%= text_field_tag :answer_user_name %>
+    <%= text_field_tag :answer_user_name, nil, autofocus: true, required: true %>
     <%= hidden_field_tag :joined_year, params[:joined_year] %>
     <%= hidden_field_tag :project_id, params[:project_id] %>
     <%= hidden_field_tag :group_id, params[:group_id] %>
