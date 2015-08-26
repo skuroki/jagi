@@ -15,12 +15,17 @@ require 'capistrano/deploy'
 #   https://github.com/capistrano/rails/tree/master/assets
 #   https://github.com/capistrano/rails/tree/master/migrations
 #
+
 # require 'capistrano/rvm'
 require 'capistrano/rbenv'
 # require 'capistrano/chruby'
 require 'capistrano/bundler'
+# FIXME: うまく動かない。あとで修正します。
 # require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
+
+# FIXME: うまく動かない。あとで修正します。
+# require 'capistrano3/unicorn'
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
 Dir.glob('lib/capistrano/tasks/*.cap').each { |r| import r }
