@@ -34,6 +34,19 @@ FactoryGirl.define do
       end
     end
 
+    trait :with_profile_image do
+      after(:create) do |user_profile|
+        FactoryGirl.create :profile_image, user_profile_id: user_profile.id
+      end
+    end
+
+
+    trait :with_normal_profile_image do
+      after(:create) do |user_profile|
+        FactoryGirl.create :profile_image, user_profile_id: user_profile.id, situation: 'normal'
+      end
+    end
+
     trait :with_more_incorrect_answer do
       after(:create) do |user_profile|
         FactoryGirl.create_list :answer, 6, user_profile_id: user_profile.id, to_user_profile_id: UserProfile.all.sample.id, correct: false

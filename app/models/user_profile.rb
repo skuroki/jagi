@@ -22,16 +22,17 @@ class UserProfile < ActiveRecord::Base
     conditions = {}
     not_where = {}
 
-    not_where[:answer_name] = nil
-    not_where[:id] = user_profile.id if user_profile.present?
+    conditions[:project_id]     =  filter['project_id'] if filter['project_id'].present?
+    conditions[:group_id]       =  filter['group_id'] if filter['group_id'].present?
+    conditions[:joined_year]    =  filter['joined_year'] if filter['joined_year'].present?
+    conditions[:id]             =  user_profile.review_mode_user_profile_ids if filter['review_mode'].present? && user_profile.present?
+    conditions[:profile_images] =  { situation: 'normal' }
 
-    conditions[:project_id] = filter['project_id'] if filter['project_id'].present?
-    conditions[:group_id] = filter['group_id'] if filter['group_id'].present?
-    conditions[:joined_year] = filter['joined_year'] if filter['joined_year'].present?
+    not_where[:answer_name]     =  nil
+    not_where[:id]              =  user_profile.id if user_profile.present? # 自分は出題しない
+    not_where[:profile_images]  =  { situation: nil }
 
-    conditions[:id] = user_profile.review_mode_user_profile_ids if filter['review_mode'].present? && user_profile.present?
-
-    UserProfile.where(conditions).where.not(not_where).sample
+    UserProfile.joins(:profile_images).where(conditions).where.not(not_where).sample
   end
 
   def review_mode_user_profile_ids

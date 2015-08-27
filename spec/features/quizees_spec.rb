@@ -4,16 +4,16 @@ feature "quiz page", type: :feature do
   feature '出題ページを表示' do
     include_context 'login_as_user'
 
-    let!(:user_profiles) { FactoryGirl.create_list :user_profile, 30, :with_user, :with_group, :with_project }
+    let(:user_profiles) { FactoryGirl.create_list :user_profile, 30, :with_user, :with_group, :with_project, :with_normal_profile_image }
 
     context '基本項目でフィルタする場合' do
       let(:filter_user_profile) { user_profiles.sample }
-      let(:joined_year_filter) { filter_user_profile.joined_year }
-      let(:group_id_filter) { filter_user_profile.group_id }
-      let(:project_id_filter) { filter_user_profile.project_id }
-      let(:filters){ { 'joined_year' => joined_year_filter, 'group_id' => group_id_filter, 'project_id' => project_id_filter } }
+      let(:joined_year_filter)  { filter_user_profile.joined_year }
+      let(:group_id_filter)     { filter_user_profile.group_id }
+      let(:project_id_filter)   { filter_user_profile.project_id }
+      let(:filters)             { { 'joined_year' => joined_year_filter, 'group_id' => group_id_filter, 'project_id' => project_id_filter } }
 
-      let!(:answer_user_profile) { UserProfile.answer_user(filters, login_user.user_profile) }
+      let(:answer_user_profile) { UserProfile.answer_user(filters, login_user.user_profile) }
 
       background do
         allow(UserProfile).to receive_message_chain(:answer_user).and_return(answer_user_profile)
@@ -71,9 +71,9 @@ feature "quiz page", type: :feature do
     end
 
     context '復習モードでフィルタする場合' do
-      let!(:user_profile){ user_profiles.sample }
-      let!(:filters){ { 'review_mode' => 1 } }
-      let!(:answers) { FactoryGirl.create_list :answer, 30, user_profile_id: user_profile.id, correct: false }
+      let!(:user_profile)        { user_profiles.sample }
+      let!(:filters)             { { 'review_mode' => 1 } }
+      let!(:answers)             { FactoryGirl.create_list :answer, 30, user_profile_id: user_profile.id, correct: false }
       let!(:answer_user_profile) { UserProfile.answer_user(filters, user_profile) }
 
       background do
