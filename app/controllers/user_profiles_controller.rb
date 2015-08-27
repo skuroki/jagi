@@ -3,13 +3,6 @@ class UserProfilesController < ApplicationController
 
   def edit
     @user_profile = UserProfile.find(params[:id])
-    @projects = Project.all
-    @groups = Group.all
-
-    @joined_years = []
-    for year in 2000..Time.zone.now.year do
-      @joined_years.unshift ["#{year}#{I18n.t('user_profiles.edit.year')}", year]
-    end
   end
 
   def update

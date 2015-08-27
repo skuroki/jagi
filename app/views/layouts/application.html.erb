@@ -8,6 +8,11 @@
 </head>
 <body>
 
+<% if current_user then %>
+  <%= link_to 'TOP', root_path %>
+  <%= link_to I18n.t('pages.index.edit_profile'), edit_user_profile_path(current_user.id) %>
+<% end %>
+
 <% flash.each do |key, value| %>
   <%= content_tag(:div, value, class: "#{key}") %>
 <% end %>

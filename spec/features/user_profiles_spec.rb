@@ -4,28 +4,28 @@ feature '登録者のプロフィール', type: :feature do
   include_context 'login_as_user'
 
   feature 'プロフィールの編集' do
-    let!(:user) { FactoryGirl.create :user, :with_user_profile }
-    let!(:user_profile) { user.user_profile }
-    let!(:projects) { FactoryGirl.create_list :project, 5 }
-    let!(:groups) { FactoryGirl.create_list :group, 5 }
+    let!(:user)           { FactoryGirl.create :user, :with_user_profile }
+    let!(:user_profile)   { user.user_profile }
+    let!(:projects)       { FactoryGirl.create_list :project, 5 }
+    let!(:groups)         { FactoryGirl.create_list :group, 5 }
 
-    let!(:new_answer_name) { Forgery(:name).full_name }
-    let!(:new_joined_year) { "#{Time.zone.now.year}#{I18n.t('user_profiles.edit.year')}" }
-    let!(:new_project) { projects.sample.name }
-    let!(:new_group) { groups.sample.name }
-    let!(:new_gender) { I18n.t('user_profiles.edit.male') }
-    let!(:new_detail) { Forgery(:basic).text }
-
-    let!(:edited_message) { I18n.t('user_profiles.update.flash_edited') }
-    let!(:update_button) { I18n.t('helpers.submit.update') }
-
-    scenario 'プロフィールを表示できる' do
+   scenario 'プロフィールを表示できる' do
       visit edit_user_profile_path(user_profile)
 
       expect(page).to have_field 'user_profile_answer_name', login_user.user_profile.answer_name
     end
 
     feature 'プロフィールが編集できる' do
+      let(:new_answer_name) { Forgery(:name).full_name }
+      let(:new_joined_year) { "#{Time.zone.now.year}#{I18n.t('user_profiles.edit.year')}" }
+      let(:new_project)     { projects.sample.name }
+      let(:new_group)       { groups.sample.name }
+      let(:new_gender)      { I18n.t('user_profiles.edit.male') }
+      let(:new_detail)      { Forgery(:basic).text }
+
+      let(:edited_message)  { I18n.t('user_profiles.update.flash_edited') }
+      let(:update_button)   { I18n.t('helpers.submit.update') }
+
       background do
         visit edit_user_profile_path(user_profile)
       end

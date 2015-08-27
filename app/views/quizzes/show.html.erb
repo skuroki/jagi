@@ -1,20 +1,25 @@
-<div id="user_image">
-  <% if @profile_image_normal %>
-    <%= image_tag @profile_image_normal.image.url %>
+<% if @answer_user_profile %>
+  <div id="user_image">
+    <% if @profile_image_normal %>
+      <%= image_tag @profile_image_normal.image.url %>
+    <% end %>
+  </div>
+  <div>
+    <%= I18n.t('quiz.show.who') %>
+  </div>
+  <%= form_tag answer_quiz_path do |f| %>
+    <%= hidden_field_tag :answer_user_id, @answer_user_profile.id %>
+    <%= label_tag :answer_user_name %>
+    <%= text_field_tag :answer_user_name %>
+    <%= hidden_field_tag :joined_year, params[:joined_year] %>
+    <%= hidden_field_tag :project_id, params[:project_id] %>
+    <%= hidden_field_tag :group_id, params[:group_id] %>
+    <%= submit_tag :answer %>
   <% end %>
-</div>
-
-<div>
-  <%= I18n.t('quiz.show.who') %>
-</div>
-
-<%= @answer_user_profile.answer_name %>
-
-<%= form_tag answer_quiz_path do |f| %>
-  <%= hidden_field_tag :answer_user_id, @answer_user_profile.id %>
-  <%= label_tag :answer_user_name %>
-  <%= text_field_tag :answer_user_name %>
-  <%= submit_tag :answer %>
+<% else %>
+  <div>
+    <%= I18n.t('quiz.show.answer_user_not_found') %>
+  </div>
 <% end %>
 
 <div id="answer_results">
@@ -25,3 +30,5 @@
     <%= I18n.t('quiz.show.incorrect') %>: <%= @total_incorrect %>
   </span>
 </div>
+
+<%= render partial: "page/start_quiz" %>

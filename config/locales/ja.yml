@@ -1,22 +1,29 @@
 ja:
 
+  common: &common
+    joined_year: "入社年度"
+    group: "グループ"
+    project: "所属プロジェクト"
+    quiz: "クイズ"
+
   user_profiles:
     update:
       flash_edited: "編集しました。"
     edit:
-      normal_image: "普通の写真（出題時）"
-      succeed_image: "相手が正解した時の写真"
-      failed_image: "相手が不正解した時の写真"
       answer_name: "正解"
       group: "グループ"
       project: "所属プロジェクト"
       joined_year: "入社年度"
+      normal_image: "普通の写真（出題時）"
+      correct_image: "相手が正解した時の写真"
+      incorrect_image: "相手が不正解した時の写真"
       detail: "その他のプロフィール"
       gender: "性別"
       male: "男性"
       female: "女性"
       please_select: "選択"
       year: "年"
+      <<: *common
 
   layouts:
     application:
@@ -28,14 +35,18 @@ ja:
       can_not_start_quiz: "出題できるユーザーがいないため、今はクイズを始められません。"
       edit_profile: "プロフィールを編集する"
       please_login_with_google: "こんにちは！ まずはGoogleでログインしてください。"
+      review_mode: "間違った問題を復習する"
+      <<: *common
 
   quiz:
     show:
       correct: "正解"
       incorrect: "不正解"
+      correct_result: "正解！"
       incorrect_result: "不正解！ 正解は「%{answer_name}」さんです"
       no_answer_users: "ユーザーがひとりも登録されていません。"
       who: "これは誰？"
+      answer_user_not_found: "出題できるメンバーがいません。"
 
   errors:
     messages:

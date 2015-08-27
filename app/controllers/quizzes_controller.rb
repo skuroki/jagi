@@ -1,9 +1,15 @@
+
 class QuizzesController < ApplicationController
   def show
-    @answer_user_profile = UserProfile.new.answer_user
+    @answer_user_profile = UserProfile.answer_user(params, current_user.user_profile)
+
     @total_correct = current_user.user_profile.total_correct
     @total_incorrect = current_user.user_profile.total_incorrect
-    @profile_image_normal = ProfileImage.find_by(situation: :normal, user_profile_id: @answer_user_profile.id)
+
+    @start_button_enabled = @answer_user_profile.present?
+    @projects = Project.all
+    @groups = Group.all
+    @profile_image_normal = ProfileImage.find_by(situation: :normal, user_profile_id: @answer_user_profile.id) if @answer_user_profile
   end
 
   def answer
@@ -14,7 +20,7 @@ class QuizzesController < ApplicationController
     else
       case_incorrect
     end
-    redirect_to quiz_path
+    redirect_to quiz_path(params.permit(UserProfile.for_filter_params))
   end
 
   private
