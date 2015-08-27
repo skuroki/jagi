@@ -60,12 +60,12 @@ class UserProfile < ActiveRecord::Base
 
   def find_image(situation)
     profile_image = ProfileImage.find_by(user_profile_id: self.id, situation: situation)
-    profile_image.present? ? profile_image.image : nil
+    profile_image.try(:image)
   end
 
   def find_image_url(situation)
     image = find_image(situation)
-    image.present? ? image.url : nil
+    image.try(:url)
   end
 end
 
