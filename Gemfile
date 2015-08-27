@@ -13,7 +13,17 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'carrierwave'
+
+gem 'unicorn'
 gem 'rmagick'
+
+group :development do
+  gem 'capistrano', '~> 3.2.1'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano3-unicorn'
+end
 
 group :test, :development do
   gem 'spring'
