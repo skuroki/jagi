@@ -43,12 +43,6 @@ class UserProfile < ActiveRecord::Base
     distincted_answers.map(&:to_user_profile_id)
   end
 
-  def answer_correct?(answer)
-    return false unless answer.present?
-    return true if answer == self.name
-    return true if answer == self.answer_name
-  end
-
   def total_correct
     Answer.where(correct: true, user_profile_id: self.id).count
   end

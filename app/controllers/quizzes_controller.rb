@@ -12,7 +12,7 @@ class QuizzesController < ApplicationController
   def answer
     @answer_user_profile = UserProfile.find(params[:answer_user_id])
 
-    if @answer_user_profile.answer_correct? params[:answer_user_name]
+    if Quiz.correct? params[:answer_user_name], @answer_user_profile
       create_answer_history(true, params[:answer_user_name], current_user.user_profile.id, params[:answer_user_id])
 
       flash[:image_url] = @answer_user_profile.find_image_url('correct')
