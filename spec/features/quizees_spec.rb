@@ -71,10 +71,10 @@ feature "quiz page", type: :feature do
     end
 
     context '復習モードでフィルタする場合' do
-      let!(:user_profile)        { user_profiles.sample }
-      let!(:filters)             { { 'review_mode' => 1 } }
-      let!(:answers)             { FactoryGirl.create_list :answer, 30, user_profile_id: user_profile.id, correct: false }
-      let!(:answer_user_profile) { UserProfile.answer_user(filters, user_profile) }
+      let(:user_profile)        { user_profiles.sample }
+      let(:filters)             { { 'review_mode' => 1 } }
+      let(:answers)             { FactoryGirl.create_list :answer, 30, user_profile_id: user_profile.id, correct: false }
+      let(:answer_user_profile) { UserProfile.answer_user(filters, user_profile) }
 
       background do
         allow(UserProfile).to receive_message_chain(:answer_user).and_return(answer_user_profile)
