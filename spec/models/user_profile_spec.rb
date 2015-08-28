@@ -20,7 +20,7 @@ RSpec.describe UserProfile, type: :model do
   it { should validate_length_of(:detail).is_at_most(10000) }
 
   describe '.answer_user (condition, user_profile)' do
-    let!(:user_profiles) { FactoryGirl.create_list :user_profile, 10, :with_user, :with_group, :with_project }
+    let!(:user_profiles) { FactoryGirl.create_list :user_profile, 10, :with_user, :with_group, :with_project, :with_normal_profile_image }
 
     context '入社年度でフィルタする場合' do
       let(:filter_joined_year)  { user_profiles.sample.joined_year }
