@@ -12,12 +12,16 @@ class QuizzesController < ApplicationController
   def answer
     @answer_user_profile = UserProfile.find(params[:answer_user_id])
 
-    if @answer_user_profile.correct? params[:answer_user_name]
+    if @answer_user_profile.answer_correct? params[:answer_user_name]
+      create_answer_history(true, params[:answer_user_name], current_user.user_profile.id, params[:answer_user_id])
+
       flash[:image_url] = @answer_user_profile.find_image_url('correct')
-      case_correct
+      flash[:notice] = I18n.t("quiz.show.correct_result")
     else
+      create_answer_history(false, params[:answer_user_name], current_user.user_profile.id, params[:answer_user_id])
+
       flash[:image_url] = @answer_user_profile.find_image_url('incorrect')
-      case_incorrect
+      flash[:notice] = I18n.t("quiz.show.incorrect_result")
     end
 
     flash[:name] = @answer_user_profile.name
@@ -31,18 +35,6 @@ class QuizzesController < ApplicationController
   end
 
   private
-
-  def case_correct
-    create_answer_history(true, params[:answer_user_name], current_user.user_profile.id, params[:answer_user_id])
-
-    flash[:notice] = I18n.t("quiz.show.correct_result")
-  end
-
-  def case_incorrect
-    create_answer_history(false, params[:answer_user_name], current_user.user_profile.id, params[:answer_user_id])
-
-    flash[:notice] = I18n.t("quiz.show.incorrect_result")
-  end
 
   def create_answer_history(correct, answer, user_profile_id, to_user_profile_id)
     Answer.create!(correct: correct, answer: answer, user_profile_id: user_profile_id, to_user_profile_id: to_user_profile_id)
