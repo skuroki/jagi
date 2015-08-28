@@ -5,6 +5,7 @@ ja:
     group: "グループ"
     project: "所属プロジェクト"
     quiz: "クイズ"
+    year: "年"
 
   user_profiles:
     update:
@@ -22,7 +23,6 @@ ja:
       male: "男性"
       female: "女性"
       please_select: "選択"
-      year: "年"
       <<: *common
 
   layouts:
@@ -47,6 +47,7 @@ ja:
       no_answer_users: "ユーザーがひとりも登録されていません。"
       who: "これは誰？"
       answer_user_not_found: "出題できるメンバーがいません。"
+      <<: *common
 
   errors:
     messages:

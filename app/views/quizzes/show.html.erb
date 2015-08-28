@@ -1,9 +1,26 @@
+<% if flash[:answer_name] %>
+  <div id="quiz_result">
+    <%= image_tag flash[:image_url] if flash[:image_url].present? %>
+    <%= content_tag :li, flash[:name] if flash[:name].present? %>
+    <%= content_tag :li, flash[:answer_name] if flash[:answer_name].present? %>
+    <%= content_tag :li, "#{flash[:joined_year]}#{I18n.t('quiz.show.year')}" if flash[:joined_year].present? %>
+    <%= content_tag :li, flash[:group] if flash[:group].present? %>
+    <%= content_tag :li, flash[:project] if flash[:project].present? %>
+    <%= content_tag :li, flash[:detail] if flash[:detail].present? %>
+  </div>
+<% end %>
+
 <% if @answer_user_profile %>
   <div id="user_image">
     <% if @profile_image_normal %>
       <%= image_tag @profile_image_normal.image.url %>
+    <% else %>
+      <div>
+        <%= I18n.t('quiz.show.answer_user_not_found') %>
+      </div>
     <% end %>
   </div>
+
   <div>
     <%= I18n.t('quiz.show.who') %>
   </div>
@@ -17,35 +34,14 @@
     <%= submit_tag :answer %>
   <% end %>
 
-  <% if flash[:answer_name] %>
-    <div id="quiz_result">
-      <%= image_tag flash[:image_url] if flash[:image_url].present? %>
-      <%= content_tag :li, flash[:name] if flash[:name].present? %>
-      <%= content_tag :li, flash[:answer_name] if flash[:answer_name].present? %>
-      <%= content_tag :li, flash[:joined_year] if flash[:joined_year].present? %>_
-      <%= content_tag :li, flash[:group] if flash[:group].present? %>
-      <%= content_tag :li, flash[:project] if flash[:project].present? %>
-      <%= content_tag :li, flash[:detail] if flash[:detail].present? %>
-    </div>
-  <% end %>
-
-<div id="user_image">
-  <% if @profile_image_normal %>
-    <%= image_tag @profile_image_normal.image.url %>
-  <% else %>
-    <div>
-      <%= I18n.t('quiz.show.answer_user_not_found') %>
-    </div>
-  <% end %>
-
-<div id="answer_results">
-  <span id="total_correct">
-    <%= I18n.t('quiz.show.correct') %>: <%= @total_correct %>
-  </span>
-  <span id="total_incorrect">
-    <%= I18n.t('quiz.show.incorrect') %>: <%= @total_incorrect %>
-  </span>
-</div>
-
+  <div id="answer_results">
+    <span id="total_correct">
+      <%= I18n.t('quiz.show.correct') %>: <%= @total_correct %>
+    </span>
+    <span id="total_incorrect">
+      <%= I18n.t('quiz.show.incorrect') %>: <%= @total_incorrect %>
+    </span>
+  </div>
 <% end %>
+
 <%= render partial: "page/start_quiz" %>
