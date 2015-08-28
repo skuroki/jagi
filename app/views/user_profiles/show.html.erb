@@ -1,2 +1,8 @@
-<%= @user_profile.name %>
-<%= @user_profile.answer_name %>
+<h2>ユーザー情報</h2>
+
+<ul>
+  <li><%= current_user.name %></li>
+  <li><%= current_user.provider %></li>
+  <li><%= current_user.uid %></li>
+  <li><%= current_user.email %></li>
+</ul>

@@ -1,5 +1,10 @@
 class UserProfilesController < ApplicationController
+  before_action :authenticate_user!
   before_action :require_logged_in, :set_situations
+
+  def show
+    @user_profile = current_user.user_profile
+  end
 
   def edit
     @user_profile = UserProfile.find(params[:id])
