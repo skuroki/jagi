@@ -4,4 +4,3 @@ FactoryGirl.define do
     situation { ['normal', 'correct', 'incorrect'].sample }
   end
 end
-

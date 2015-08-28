@@ -13,9 +13,7 @@
   <%= link_to I18n.t('pages.index.edit_profile'), edit_user_profile_path(current_user.id) %>
 <% end %>
 
-<% flash.each do |key, value| %>
-  <%= content_tag(:div, value, class: "#{key}") %>
-<% end %>
+<%= content_tag(:div, flash[:notice], class: 'notice') %>
 
 <%= yield %>
 
