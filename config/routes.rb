@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   }
 
   resource :user_profile, only: [:show, :edit, :update]
-  resource :quiz, only: [:show] do
-    member do
-      post :answer
-    end
+  resource :quiz, only: [:new, :create, :destroy] do
+    get  :question, on: :member
+    post :answer,   on: :member
+    get  :result,   on: :member
   end
 
   root to: 'home#welcome'

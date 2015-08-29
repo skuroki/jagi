@@ -16,8 +16,11 @@ class UserProfilesController < ApplicationController
     result = @user_profile.update(user_profile_params)
 
     @situations.each do |situation|
-      permitted = profile_image_params("profile_image_#{situation}".to_sym)
-      ProfileImage.save_image permitted
+      permitted_params = profile_image_params("profile_image_#{situation}".to_sym)
+      ProfileImage.find_or_create_by(
+        user_profile_id: permitted_params[:user_profile_id] ,
+        situation: permitted_params[:situation]
+      ).update(permitted_params)
     end
 
     if result

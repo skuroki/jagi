@@ -13,22 +13,6 @@ feature 'ユーザプロフィール', type: :feature do
       expect(page).to have_content login_user.provider
       expect(page).to have_content login_user.uid
       expect(page).to have_content login_user.email
-
-      # scenario 'クイズ開始フォームが表示される' do
-      #   expect(page).to have_select('joined_year')
-      #   expect(page).to have_select('project_id')
-      #   expect(page).to have_select('group_id')
-      #   expect(page).to have_button I18n.t('pages.index.start_quiz')
-
-      #   select joined_year_filter, from: 'joined_year'
-      #   select project_filter, from: 'project_id'
-      #   select group_filter, from: 'group_id'
-      # end
-
-      # scenario 'クイズ開始ボタンを押すと出題ページに移動する' do
-      #   click_on I18n.t('pages.index.start_quiz')
-      #   expect(current_path).to eq quiz_path
-      # end
     end
   end
 
