@@ -68,6 +68,15 @@ feature 'クイズ', type: :feature do
 
           expect(page).to have_content I18n.t('quiz.result.correct')
         end
+
+        scenario '正解数の合計が表示される' do
+          fill_in 'answer_name', with: question_user.answer_name
+          click_button I18n.t('quiz.question.submit')
+
+          click_link I18n.t('quiz.result.next')
+          expect(page).to have_css('#total_correct', I18n.t('quiz.show.correct'))
+          expect(page).to have_css('#total_correct', text: '1')
+        end
       end
 
       context '不正解だった場合' do
@@ -80,6 +89,15 @@ feature 'クイズ', type: :feature do
           click_button I18n.t('quiz.question.submit')
 
           expect(page).to have_content I18n.t('quiz.result.incorrect')
+        end
+
+        scenario '不正解数の合計が表示される' do
+          fill_in 'answer_name', with: question_user.answer_name
+          click_button I18n.t('quiz.question.submit')
+
+          click_link I18n.t('quiz.result.next')
+          expect(page).to have_css('#total_incorrect', I18n.t('quiz.show.incorrect'))
+          expect(page).to have_css('#total_incorrect', text: '1')
         end
       end
     end

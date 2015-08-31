@@ -6,9 +6,9 @@ class Quiz
     @conditions = params[:conditions]
     @questions  = params[:questions] || questions
     @answers    = params[:answers] || []
-    @total      = 0
-    @correct    = 0
-    @incorrect  = 0
+    @total      = params[:total] || 0
+    @correct    = params[:correct] || 0
+    @incorrect  = params[:incorrect] || 0
   end
 
   def next_question
