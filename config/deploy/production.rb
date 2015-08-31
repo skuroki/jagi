@@ -3,7 +3,7 @@ set :rails_env, :production
 
 server 'jagi', user: 'jagi', roles: %w{web app db}
 
-set :linked_dirs, %w{tmp/pids tmp/sockets public/uploads}
+set :linked_dirs, %w{log tmp/pids tmp/sockets public/uploads}
 
 set :ssh_options, {
   forward_agent: true,
