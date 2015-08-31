@@ -1,0 +1,16 @@
+- if @question.blank?
+  登録数が0件のため問題が作れません
+- else
+  = image_tag @question.profile_image_url(:normal)
+  = I18n.t('quiz.show.who')
+  = form_tag answer_quiz_path do
+    = label_tag :answer_name
+    = text_field_tag :answer_name, nil, autofocus: true, required: true
+    = submit_tag :answer
+  #answer_results
+    %span#total_correct
+      = I18n.t('quiz.show.correct')
+      \: #{@current_quiz.correct}
+    %span#total_incorrect
+      = I18n.t('quiz.show.incorrect')
+      \: #{@current_quiz.incorrect}
