@@ -2,7 +2,7 @@ set :stage, :production
 
 server 'jagi', user: 'jagi', roles: %w{web app db}
 
-set :linked_dirs, %w{tmp/pids tmp/sockets}
+set :linked_dirs, %w{tmp/pids tmp/sockets public/uploads}
 
 paths = [ENV["HOME"]+'/.ssh/id_rsa']
 paths.unshift ENV["PRIVATE_KEY_PATH"] if ENV.has_key? 'PRIVATE_KEY_PATH'
