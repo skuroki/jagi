@@ -1,16 +1,16 @@
 = form_tag quiz_path, method: :post do
   %div
-    = label :joined_year, I18n.t('pages.index.joined_year')
+    = label :joined_year, I18n.t('quiz.new.joined_year')
     = select_tag :joined_year, options_for_select(joined_years_selection, selected: params['joined_year']), include_blank: true
   %div
-    = label :project_id, I18n.t('pages.index.project')
+    = label :project_id, I18n.t('quiz.new.project')
     = select_tag :project_id, options_from_collection_for_select(projects, :id, :name, selected: params['project_id']), include_blank: true
   %div
-    = label :group_id, I18n.t('pages.index.group')
+    = label :group_id, I18n.t('quiz.new.group')
     = select_tag :group_id, options_from_collection_for_select(groups, :id, :name, selected: params['group_id']), include_blank: true
   %div
     %label
       = check_box_tag :review_mode, nil, params['review_mode']
-      = label :review_mode, I18n.t('pages.index.review_mode')
+      = label :review_mode, I18n.t('quiz.new.review_mode')
       %label
-  = submit_tag I18n.t('pages.index.start_quiz')
+  = submit_tag I18n.t('quiz.new.start_quiz')

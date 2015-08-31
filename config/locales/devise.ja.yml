@@ -2,6 +2,10 @@ ja:
   devise:
     omniauth_callbacks:
       success: "Googleでログインしました。"
+    sessions:
+      user:
+        signed_out: "ログアウトしました。"
+
   date:
     abbr_day_names:
     - 日

@@ -36,7 +36,7 @@ feature 'クイズ', type: :feature do
 
     scenario '回答入力フォームが表示される' do
       expect(page).to have_field('answer_name')
-      expect(page).to have_button 'answer'
+      expect(page).to have_button I18n.t('quiz.question.submit')
     end
 
     feature 'クイズに回答する' do
@@ -46,7 +46,7 @@ feature 'クイズ', type: :feature do
 
       scenario '問題となったユーザのプロフィールが表示される' do
         fill_in 'answer_name', with: question_user.answer_name
-        click_button 'answer'
+        click_button I18n.t('quiz.question.submit')
 
         expect(page).to have_content question_user.user.name
         expect(page).to have_content question_user.answer_name
@@ -64,9 +64,9 @@ feature 'クイズ', type: :feature do
 
         scenario 'お祝いのメッセージが表示される' do
           fill_in 'answer_name', with: question_user.answer_name
-          click_button 'answer'
+          click_button I18n.t('quiz.question.submit')
 
-          expect(page).to have_content '正解です！'
+          expect(page).to have_content I18n.t('quiz.result.correct')
         end
       end
 
@@ -77,9 +77,9 @@ feature 'クイズ', type: :feature do
 
         scenario 'お悔やみのメッセージが表示される' do
           fill_in 'answer_name', with: question_user.answer_name
-          click_button 'answer'
+          click_button I18n.t('quiz.question.submit')
 
-          expect(page).to have_content '不正解です...'
+          expect(page).to have_content I18n.t('quiz.result.incorrect')
         end
       end
     end
