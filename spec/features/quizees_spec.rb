@@ -12,7 +12,7 @@ feature 'クイズ', type: :feature do
       expect(page).to have_select('joined_year')
       expect(page).to have_select('project_id')
       expect(page).to have_select('group_id')
-      expect(page).to have_field('review_mode')
+      # expect(page).to have_field('review_mode')
       expect(page).to have_button I18n.t('pages.index.start_quiz')
     end
 

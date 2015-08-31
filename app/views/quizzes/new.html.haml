@@ -9,8 +9,4 @@
     = label :group_id, I18n.t('quiz.new.group')
     = select_tag :group_id, options_from_collection_for_select(groups, :id, :name, selected: params['group_id']), include_blank: true
   %div
-    %label
-      = check_box_tag :review_mode, nil, params['review_mode']
-      = label :review_mode, I18n.t('quiz.new.review_mode')
-      %label
   = submit_tag I18n.t('quiz.new.start_quiz')
