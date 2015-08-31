@@ -3,4 +3,3 @@ FactoryGirl.define do
     name      { Forgery(:basic).text }
   end
 end
-
