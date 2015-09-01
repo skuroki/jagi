@@ -45,7 +45,7 @@ class Quiz
 
   def questions
     UserProfile.
-      without_user(@conditions[:user_id]).
+      without_user(@user_id).
       with_image.
       with_group(@conditions[:group_id]).
       with_project(@conditions[:project_id]).
