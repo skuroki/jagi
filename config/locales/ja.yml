@@ -6,6 +6,9 @@ ja:
     project: "所属プロジェクト"
     quiz: "クイズ"
     year: "年"
+    logout: "ログアウト"
+    male: "男性"
+    female: "女性"
 
   user_profiles:
     update:
@@ -20,8 +23,6 @@ ja:
       incorrect_image: "相手が不正解した時の写真"
       detail: "その他のプロフィール"
       gender: "性別"
-      male: "男性"
-      female: "女性"
       please_select: "選択"
       <<: *common
 
@@ -39,14 +40,24 @@ ja:
       <<: *common
 
   quiz:
-    show:
+    new:
+      start_quiz: "クイズを始める"
+      review_mode: "間違った問題を修正する "
+      <<: *common
+    question:
       correct: "正解"
       incorrect: "不正解"
-      correct_result: "正解です！"
-      incorrect_result: "不正解です！"
-      no_answer_users: "ユーザーがひとりも登録されていません。"
       who: "これは誰？"
-      answer_user_not_found: "出題できるメンバーがいません。"
+      no_questions: "登録数が0件のため問題が作れません"
+      answer: "答え"
+      submit: "回答する"
+    result:
+      correct: "正解です！"
+      incorrect: "不正解です。。。"
+      finish: "完了する"
+      no_more_questions: "全問回答しました"
+      next: "次の問題へ"
+      retire: "リタイアする"
       <<: *common
 
   errors:

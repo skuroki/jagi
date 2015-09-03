@@ -54,4 +54,19 @@ RSpec.describe ProfileImage, type: :model do
       end
     end
   end
+
+  describe 'Scopes' do
+    describe '.with_situation' do
+      let(:target_situation)          { Forgery(:basic).text }
+      let(:target_profile_images)     { FactoryGirl.create_list :profile_image, 10, situation: target_situation }
+      let(:untargeted_situation)      { Forgery(:basic).text }
+      let(:untargeted_profile_images) { FactoryGirl.create_list :profile_image, 10, situation: untargeted_situation }
+
+      subject { described_class.with_situation(target_situation) }
+
+      it 'collects target_profile_images' do
+        expect(subject).to match_array target_profile_images
+      end
+    end
+  end
 end

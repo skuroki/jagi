@@ -7,9 +7,6 @@ class ProfileImage < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
-  scope :without_pending, -> {
-    where.not(situation: nil)
-  }
   scope :with_situation, ->(situation) {
     where(situation: situation)
   }

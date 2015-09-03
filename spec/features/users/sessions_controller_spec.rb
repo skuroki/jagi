@@ -18,7 +18,7 @@ feature 'セッション' do
 
     scenario 'ログアウトする' do
       visit user_profile_path
-      click_on 'logout'
+      click_on I18n.t('pages.index.logout')
 
       expect(page.current_path).to eq new_user_session_path
       expect(page).to have_content I18n.t('devise.sessions.user.signed_out')

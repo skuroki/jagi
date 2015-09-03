@@ -6,9 +6,9 @@ class Quiz
     @conditions = params[:conditions]
     @questions  = params[:questions] || questions
     @answers    = params[:answers] || []
-    @total      = 0
-    @correct    = 0
-    @incorrect  = 0
+    @total      = params[:total] || 0
+    @correct    = params[:correct] || 0
+    @incorrect  = params[:incorrect] || 0
   end
 
   def next_question
@@ -45,8 +45,8 @@ class Quiz
 
   def questions
     UserProfile.
-      without_user(@conditions[:user_id]).
-      without_pending.
+      without_user(@user_id).
+      with_image.
       with_group(@conditions[:group_id]).
       with_project(@conditions[:project_id]).
       with_gender(@conditions[:gender]).

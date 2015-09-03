@@ -17,8 +17,8 @@ class UserProfile < ActiveRecord::Base
   scope :without_user, -> (user_id) {
     where.not(user_id: user_id)
   }
-  scope :without_pending, -> {
-    joins(:profile_images).merge(ProfileImage.without_pending)
+  scope :with_image, -> {
+    joins(:profile_images).merge(ProfileImage.where.not(situation: nil))
   }
   scope :with_group, -> (group_id) {
     where(group_id: group_id) if group_id.present?

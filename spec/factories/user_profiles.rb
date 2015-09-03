@@ -1,14 +1,18 @@
 FactoryGirl.define do
   factory :user_profile do
-    user { FactoryGirl.create :user }
+    user            { FactoryGirl.create :user }
     answer_name     { Forgery(:name).last_name }
-    group_id        { FactoryGirl.create :project }
-    project_id      { FactoryGirl.create :group }
+    group           { FactoryGirl.create :group }
+    project         { FactoryGirl.create :project }
     joined_year     { [Time.zone.now.year, Time.zone.now.year-1].sample }
     gender          { ['male', 'female'].sample }
 
-    after(:create) do |user_profile|
-      FactoryGirl.create :profile_image, user_profile_id: user_profile.id, situation: 'normal'
+    transient do
+      profile_image true
+    end
+
+    after(:create) do |user_profile, evaluator|
+      FactoryGirl.create :profile_image, user_profile_id: user_profile.id, situation: 'normal' if evaluator.profile_image
     end
 
     trait :with_answer do

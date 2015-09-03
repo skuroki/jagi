@@ -16,6 +16,7 @@ gem 'carrierwave'
 
 gem 'unicorn'
 gem 'rmagick'
+gem 'haml-rails'
 
 group :development do
   gem 'capistrano', '~> 3.2.1'
@@ -23,6 +24,7 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
   gem 'capistrano3-unicorn'
+  gem 'erb2haml'
 end
 
 group :test, :development do

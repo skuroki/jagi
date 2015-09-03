@@ -1,0 +1,25 @@
+#quiz_result
+  - if @result == :win
+    %div
+      = image_tag @question.profile_image_url(:correct)
+      = I18n.t('quiz.result.correct')
+  - else
+    %div
+      = image_tag @question.profile_image_url(:incorrect)
+      = I18n.t('quiz.result.incorrect')
+  %div= @question.user.name
+  %div= @question.answer_name
+  - if @question.gender == 'male'
+    %div= I18n.t('common.male')
+  - else
+    %div= I18n.t('common.famale')
+  %div= "#{@question.joined_year}#{I18n.t('user_profiles.edit.year')}"
+  %div= @question.group.try(:name)
+  %div= @question.project.try(:name)
+  %div= @question.detail
+- if @current_quiz.next_question.present?
+  = link_to I18n.t('quiz.result.next'), question_quiz_path
+  = link_to I18n.t('quiz.result.retire'), quiz_path, method: :delete
+- else
+  = I18n.t('quiz.result.no_more_questions')
+  #{link_to I18n.t('quiz.result.finish'), quiz_path, method: :delete}
