@@ -28,10 +28,11 @@
         %a.navbar-brand(href="#") Jagi
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
-            %li= link_to "Link 1", "/path1"
-            %li= link_to "Link 2", "/path2"
-            %li= link_to "Link 3", "/path3"
-            %li= link_to "Link 3", "/path3"
+            %li= link_to 'TOP', root_path
+            - if user_signed_in?
+              %li= link_to I18n.t('pages.index.edit_profile'), edit_user_profile_path
+              %li= link_to I18n.t('pages.index.start_quiz'), new_quiz_path
+              %li= link_to I18n.t('pages.index.logout'), destroy_user_session_path, method: :delete
 
     .container
       .row
@@ -40,11 +41,10 @@
           = yield
         .col-lg-3
           .well.sidebar-nav
-            %h3 Sidebar
             %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
+              %li= link_to 'TOP', root_path
+              - if user_signed_in?
+                %li= link_to I18n.t('pages.index.edit_profile'), edit_user_profile_path
+                %li= link_to I18n.t('pages.index.start_quiz'), new_quiz_path
       %footer
-        %p &copy; Company 2015
+        %p &copy; Aiming #{Time.zone.now.year}
