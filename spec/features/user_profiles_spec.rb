@@ -10,8 +10,6 @@ feature 'ユーザプロフィール', type: :feature do
       visit user_profile_path
 
       expect(page).to have_content login_user.name
-      expect(page).to have_content login_user.provider
-      expect(page).to have_content login_user.uid
       expect(page).to have_content login_user.email
     end
   end
