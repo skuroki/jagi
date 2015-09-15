@@ -2,9 +2,9 @@
   = I18n.t('quiz.question.no_questions')
 - else
   = image_tag @question.profile_image_url(:normal)
-  = I18n.t('quiz.question.who')
+  %div.h1
+    = I18n.t('quiz.question.who')
   = form_tag answer_quiz_path do
-    = label_tag :answer_name, I18n.t('quiz.question.answer')
     = text_field_tag :answer_name, nil, autofocus: true, required: true
     = submit_tag I18n.t('quiz.question.submit')
   #answer_results

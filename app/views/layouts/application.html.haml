@@ -25,10 +25,9 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        %a.navbar-brand(href="#") Jagi
+        %a.navbar-brand(href="/") Jagi
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
-            %li= link_to 'TOP', root_path
             - if user_signed_in?
               %li= link_to I18n.t('pages.index.edit_profile'), edit_user_profile_path
               %li= link_to I18n.t('pages.index.start_quiz'), new_quiz_path
