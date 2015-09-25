@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+
+#main-message {
+  font-size: 250%;
+  padding: 10px;
+}
+
+#answer_results {
+  margin: 1em;
+  font-size: 120%;
+}
+
+.nav-list{
+  margin: 1em;
+}
+
+footer{
+  margin-top: 1em
+}

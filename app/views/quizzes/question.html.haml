@@ -2,7 +2,7 @@
   = I18n.t('quiz.question.no_questions')
 - else
   = image_tag @question.profile_image_url(:normal)
-  %div.h1
+  #main-message
     = I18n.t('quiz.question.who')
   = form_tag answer_quiz_path do
     = text_field_tag :answer_name, nil, autofocus: true, required: true

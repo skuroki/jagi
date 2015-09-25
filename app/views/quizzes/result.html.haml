@@ -2,12 +2,12 @@
   - if @result == :win
     %div
       = image_tag @question.profile_image_url(:correct)
-    %div.h1
+    %div#main-message
       = I18n.t('quiz.result.correct')
   - else
     %div
       = image_tag @question.profile_image_url(:incorrect)
-    %div.h1
+    %div#main-message
       = I18n.t('quiz.result.incorrect')
   %div= @question.user.name
   %div= @question.answer_name
