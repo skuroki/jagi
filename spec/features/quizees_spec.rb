@@ -73,7 +73,7 @@ feature 'クイズ', type: :feature do
           fill_in 'answer_name', with: question_user.answer_name
           click_button I18n.t('quiz.question.submit')
 
-          click_link I18n.t('quiz.result.next')
+          click_button I18n.t('quiz.result.next')
           expect(page).to have_css('#total_correct', I18n.t('quiz.show.correct'))
           expect(page).to have_css('#total_correct', text: '1')
         end
@@ -95,7 +95,7 @@ feature 'クイズ', type: :feature do
           fill_in 'answer_name', with: question_user.answer_name
           click_button I18n.t('quiz.question.submit')
 
-          click_link I18n.t('quiz.result.next')
+          click_button I18n.t('quiz.result.next')
           expect(page).to have_css('#total_incorrect', I18n.t('quiz.show.incorrect'))
           expect(page).to have_css('#total_incorrect', text: '1')
         end

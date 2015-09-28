@@ -43,12 +43,13 @@ ja:
     new:
       start_quiz: "クイズを始める"
       review_mode: "間違った問題を修正する "
+      filter: 出題の絞り込み
       <<: *common
     question:
       correct: "正解"
       incorrect: "不正解"
       who: "これは誰？"
-      no_questions: "登録数が0件のため問題が作れません"
+      no_questions: "検索結果が0件のため問題が作れません。もっと絞り込みをゆるくしてください"
       submit: "回答する"
     result:
       correct: "正解です！"
