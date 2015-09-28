@@ -43,6 +43,7 @@ ja:
     new:
       start_quiz: "クイズを始める"
       review_mode: "間違った問題を修正する "
+      filter: 出題の絞り込み
       <<: *common
     question:
       correct: "正解"
