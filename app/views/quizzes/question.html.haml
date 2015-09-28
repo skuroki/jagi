@@ -6,7 +6,7 @@
     = I18n.t('quiz.question.who')
   = form_tag answer_quiz_path do
     = text_field_tag :answer_name, nil, autofocus: true, required: true
-    = submit_tag I18n.t('quiz.question.submit')
+    = submit_tag I18n.t('quiz.question.submit'), class: 'btn btn-primary'
   #answer_results
     %span#total_correct
       = I18n.t('quiz.question.correct')

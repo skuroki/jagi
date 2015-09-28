@@ -20,8 +20,8 @@
   %div= @question.project.try(:name)
   %div= @question.detail
 - if @current_quiz.next_question.present?
-  = link_to I18n.t('quiz.result.next'), question_quiz_path
-  = link_to I18n.t('quiz.result.retire'), quiz_path, method: :delete
+  = button_to I18n.t('quiz.result.next'), question_quiz_path , method: :get, class: 'btn btn-info margin-top'
+  = button_to I18n.t('quiz.result.retire'), quiz_path, method: :delete, class: 'btn btn-warning margin-top'
 - else
   = I18n.t('quiz.result.no_more_questions')
-  #{link_to I18n.t('quiz.result.finish'), quiz_path, method: :delete}
+  = button_to I18n.t('quiz.result.finish'), quiz_path, method: :delete , class: 'btn btn-success margin-top'
