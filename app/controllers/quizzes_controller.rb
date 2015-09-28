@@ -1,7 +1,7 @@
 class QuizzesController < ApplicationController
   before_action :authenticate_user!
   before_action :require_quiz_started, except: [:new, :create]
-  before_action :require_quiz_not_started, only: [:new, :create]
+  before_action :require_quiz_not_started, only: [:new]
 
   def new
   end

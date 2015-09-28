@@ -1,5 +1,6 @@
 - if @question.blank?
   = I18n.t('quiz.question.no_questions')
+  = render 'start_form'
 - else
   = image_tag @question.profile_image_url(:normal)
   #main-message
