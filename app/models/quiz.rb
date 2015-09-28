@@ -1,4 +1,6 @@
 class Quiz
+  require 'nkf'
+
   attr_accessor :total, :correct, :incorrect
 
   def initialize(params)
@@ -20,7 +22,10 @@ class Quiz
   end
 
   def last_result
-    (last_question.answer_name == @answers.last) ? :win : :lose
+    self.class.correct?(last_question, @answers.last)? :win : :lose
+  end
+
+  def self.haha
   end
 
   def fin?
@@ -52,5 +57,22 @@ class Quiz
       with_gender(@conditions[:gender]).
       with_joined_year(@conditions[:joined_year]).
       pluck(:user_id)
+  end
+
+  def self.correct?(user_profile, answer_text)
+    # ユーザーが決めた正解文字列での判定 (ひらがな入力でもカタカナ入力でも等しく判定する)
+    if NKF.nkf("--hiragana -w", user_profile.answer_name) == NKF.nkf("--hiragana -w", answer_text)
+      return true
+    # Google認証情報の氏名使って判定 (完全一致)
+    elsif user_profile.user.name == answer_text
+      return true
+    # Google認証情報の氏名使って、苗字をゆるく判定 (最初の二文字が一致すれば正解)
+    elsif answer_text.match("^#{user_profile.user.name[0..1]}")
+      return true
+    # Google認証情報の氏名を使って、名前をゆるく判定 (ラストの二文字が一致すれば正解)
+    elsif answer_text.match("#{user_profile.user.name[-2..-1]}$")
+      return true
+    end
+    false
   end
 end
