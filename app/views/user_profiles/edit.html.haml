@@ -1,28 +1,28 @@
 = form_for @user_profile, html: { multipart: true } do |f|
   = f.label :answer_name, I18n.t('user_profiles.edit.answer_name')
-  = f.text_field :answer_name
+  = f.text_field :answer_name, class: 'form-control'
+  %div.form-group
+    = f.label I18n.t('user_profiles.edit.gender')
+    = f.select :gender, [[I18n.t('user_profiles.edit.male'), "male"], [I18n.t('user_profiles.edit.female'), "female"]], { :selected => @user_profile.gender, include_blank: true}, { class: 'form-control' }
+  %div.form-group
+    = f.label I18n.t('user_profiles.edit.project')
+    = f.select :project_id, options_from_collection_for_select(projects, :id, :name, @user_profile.project_id), { include_blank: true }, { class: 'form-control' }
+  %div.form-group
+    = f.label I18n.t('user_profiles.edit.group')
+    = f.select :group_id, options_from_collection_for_select(groups, :id, :name, @user_profile.group_id), { include_blank: true }, { class: 'form-control' }
+  %div.form-group
+    = f.label I18n.t('user_profiles.edit.joined_year')
+    = f.select :joined_year, joined_years_selection, { selected: @user_profile.joined_year, include_blank: true }, { class: 'form-control' }
+  %div.form-group
+    = f.label :detail, I18n.t('user_profiles.edit.detail')
+    = f.text_area :detail, class: 'form-control'
   - @situations.each do |situation|
-    %div
+    %div.form-group
+      = f.label I18n.t("user_profiles.edit.#{situation}_image")
       = file_field "profile_image_#{situation}".to_sym, :image
-      = I18n.t("user_profiles.edit.#{situation}_image")
       = hidden_field "profile_image_#{situation}", :situation, value: situation
       = hidden_field "profile_image_#{situation}", :user_profile_id, value: @user_profile.id
-  %div
-    = f.label I18n.t('user_profiles.edit.gender')
-    = f.select :gender, [[I18n.t('user_profiles.edit.male'), "male"], [I18n.t('user_profiles.edit.female'), "female"]], :selected => @user_profile.gender, include_blank: true
-  %div
-    = f.label I18n.t('user_profiles.edit.project')
-    = f.select :project_id, options_from_collection_for_select(projects, :id, :name, @user_profile.project_id), include_blank: true
-  %div
-    = f.label I18n.t('user_profiles.edit.group')
-    = f.select :group_id, options_from_collection_for_select(groups, :id, :name, @user_profile.group_id), include_blank: true
-  %div
-    = f.label I18n.t('user_profiles.edit.joined_year')
-    = f.select :joined_year, joined_years_selection, selected: @user_profile.joined_year, include_blank: true
-  %div
-    = f.label :detail, I18n.t('user_profiles.edit.detail')
-    = f.text_area :detail
-  = f.submit
+  = f.submit class: 'btn btn-primary  '
 - @user_profile.profile_images.each do |image|
   %div
     = I18n.t("user_profiles.edit.#{image.situation}_image")

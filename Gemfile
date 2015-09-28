@@ -18,6 +18,10 @@ gem 'unicorn'
 gem 'rmagick'
 gem 'haml-rails'
 
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
+gem 'therubyracer'
+
 group :development do
   gem 'capistrano', '~> 3.2.1'
   gem 'capistrano-rails'

@@ -49,7 +49,6 @@ ja:
       incorrect: "不正解"
       who: "これは誰？"
       no_questions: "登録数が0件のため問題が作れません"
-      answer: "答え"
       submit: "回答する"
     result:
       correct: "正解です！"
