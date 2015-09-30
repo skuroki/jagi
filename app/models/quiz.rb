@@ -56,7 +56,8 @@ class Quiz
       with_project(@conditions[:project_id]).
       with_gender(@conditions[:gender]).
       with_joined_year(@conditions[:joined_year]).
-      pluck(:user_id)
+      pluck(:user_id).
+      shuffle
   end
 
   def self.correct?(user_profile, answer_text)

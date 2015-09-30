@@ -26,7 +26,7 @@ feature 'クイズ', type: :feature do
 
   # FIXME: ビューのテストにしかなってないのでなおす
   feature 'クイズを進める' do
-    let!(:users) { FactoryGirl.create_list :user_profile, 5 }
+    let!(:users) { FactoryGirl.create_list :user_profile, 30 }
     let!(:question_user) { FactoryGirl.create :user_profile }
 
     before do
@@ -50,11 +50,30 @@ feature 'クイズ', type: :feature do
 
         expect(page).to have_content question_user.user.name
         expect(page).to have_content question_user.answer_name
+        expect(page).to have_content question_user.detail
         # expect(page).to have_content gender
         # expect(page).to have_content joined_year
         # expect(page).to have_content group_name
         # expect(page).to have_content project_name
-        expect(page).to have_content question_user.detail
+      end
+
+      feature 'to many questions continuity' do
+        let(:question_user_ids) {
+          questions = []
+
+          10.times do
+            questions.push find('#question_image')['data-user-id'].to_i
+
+            fill_in 'answer_name', with: question_user.answer_name
+            click_button I18n.t('quiz.question.submit')
+            click_button I18n.t('quiz.result.next')
+          end
+          questions
+        }
+
+        scenario 'questions are shuffled' do
+          expect(question_user_ids).not_to eq question_user_ids.sort
+        end
       end
 
       context '正解だった場合' do
