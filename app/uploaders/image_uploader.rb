@@ -6,6 +6,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
   include CarrierWave::RMagick
   process resize_to_fit: [300, 300]
+  process :fix_rotate
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -36,6 +37,14 @@ class ImageUploader < CarrierWave::Uploader::Base
   # version :thumb do
   #   process :resize_to_fit => [50, 50]
   # end
+
+  def fix_rotate
+    manipulate! do |img|
+      img = img.auto_orient
+      img = yield(img) if block_given?
+      img
+    end
+  end
 
   def filename
      "#{secure_token}.#{file.extension}" if original_filename.present?
