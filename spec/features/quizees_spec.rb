@@ -13,12 +13,12 @@ feature 'クイズ', type: :feature do
       expect(page).to have_select('project_id')
       expect(page).to have_select('group_id')
       # expect(page).to have_field('review_mode')
-      expect(page).to have_button I18n.t('pages.index.start_quiz')
+      expect(page).to have_button I18n.t('quiz.new.start_quiz')
     end
 
     context 'クイズを始めるボタンをクリックしたとき' do
       scenario 'クイズが開始される' do
-        click_button I18n.t('pages.index.start_quiz')
+        click_button I18n.t('quiz.new.start_quiz')
         expect(current_path).to eq question_quiz_path
       end
     end
@@ -31,7 +31,7 @@ feature 'クイズ', type: :feature do
 
     before do
       visit new_quiz_path
-      click_button I18n.t('pages.index.start_quiz')
+      click_button I18n.t('quiz.new.start_quiz')
     end
 
     scenario '回答入力フォームが表示される' do
