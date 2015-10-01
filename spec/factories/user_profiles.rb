@@ -12,7 +12,11 @@ FactoryGirl.define do
     end
 
     after(:create) do |user_profile, evaluator|
-      FactoryGirl.create :profile_image, user_profile_id: user_profile.id, situation: 'normal' if evaluator.profile_image
+      if evaluator.profile_image
+        FactoryGirl.create :profile_image, user_profile_id: user_profile.id, situation: 'normal'
+        FactoryGirl.create :profile_image, user_profile_id: user_profile.id, situation: 'correct'
+        FactoryGirl.create :profile_image, user_profile_id: user_profile.id, situation: 'incorrect'
+      end
     end
 
     trait :with_answer do

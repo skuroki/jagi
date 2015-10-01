@@ -74,7 +74,11 @@ feature 'クイズ', type: :feature do
         scenario 'questions are shuffled' do
           expect(question_user_ids).not_to eq question_user_ids.sort
         end
-      end
+
+        scenario 'different user is found per 1 question' do
+          expect(question_user_ids.uniq.size).to eq question_user_ids.size
+        end
+     end
 
       context '正解だった場合' do
         before do

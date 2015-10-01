@@ -18,7 +18,7 @@ class UserProfile < ActiveRecord::Base
     where.not(user_id: user_id)
   }
   scope :with_image, -> {
-    joins(:profile_images).merge(ProfileImage.where.not(situation: nil))
+    joins(:profile_images).merge(ProfileImage.with_situation('normal'))
   }
   scope :with_group, -> (group_id) {
     where(group_id: group_id) if group_id.present?
