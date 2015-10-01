@@ -28,11 +28,14 @@ ja:
 
   layouts:
     application:
-      submit_profile: "プロフィール登録"
+      <<: *common
+      profile: "プロフィール"
+      quiz: "クイズ"
+      help: "使い方"
+      repository: "GitHub"
 
   pages:
     index:
-      start_quiz: "クイズを始める"
       can_not_start_quiz: "出題できるユーザーがいないため、今はクイズを始められません。"
       edit_profile: "プロフィールを編集する"
       please_login_with_google: "こんにちは！ まずはGoogleでログインしてください。"

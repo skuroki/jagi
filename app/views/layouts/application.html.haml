@@ -29,9 +29,11 @@
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
             - if user_signed_in?
-              %li= link_to I18n.t('pages.index.edit_profile'), edit_user_profile_path
-              %li= link_to I18n.t('pages.index.start_quiz'), new_quiz_path
-              %li= link_to I18n.t('pages.index.logout'), destroy_user_session_path, method: :delete
+              %li= link_to I18n.t('layouts.application.profile'), edit_user_profile_path
+              %li= link_to I18n.t('layouts.application.quiz'), new_quiz_path
+              %li= link_to I18n.t('layouts.application.help'), 'https://github.com/Yinaura/jagi/wiki/%E3%82%B8%E3%83%A3%E3%82%AE%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9', target: '_blank'
+              %li= link_to I18n.t('layouts.application.repository'), 'https://github.com/Yinaura/jagi', target: '_blank'
+              %li= link_to I18n.t('layouts.application.logout'), destroy_user_session_path, method: :delete
 
     .container
       .row
@@ -43,7 +45,7 @@
             %ul.nav.nav-list
               %li= link_to 'TOP', root_path
               - if user_signed_in?
-                %li= link_to I18n.t('pages.index.edit_profile'), edit_user_profile_path
-                %li= link_to I18n.t('pages.index.start_quiz'), new_quiz_path
+                %li= link_to I18n.t('layouts.application.profile'), edit_user_profile_path
+                %li= link_to I18n.t('layouts.application.quiz'), new_quiz_path
       %footer
         %p &copy; Aiming #{Time.zone.now.year}
