@@ -51,10 +51,6 @@ feature 'Quiz', type: :feature do
           expect(page).to have_content question_user.user.name
           expect(page).to have_content question_user.answer_name
           expect(page).to have_content question_user.detail
-          # expect(page).to have_content gender
-          # expect(page).to have_content joined_year
-          # expect(page).to have_content group_name
-          # expect(page).to have_content project_name
         end
 
         context 'When the answer was correct' do

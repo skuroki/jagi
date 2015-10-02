@@ -25,9 +25,6 @@ class Quiz
     self.class.correct?(last_question, @answers.last)? :win : :lose
   end
 
-  def self.haha
-  end
-
   def fin?
     @questions.count == @questions.answers.count
   end
