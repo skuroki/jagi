@@ -2,7 +2,7 @@
   = I18n.t('quiz.question.no_questions')
   = render 'start_form'
 - else
-  = image_tag @question.profile_image_url(:normal)
+  = image_tag @question.profile_image_url(:normal), id: "question_image", 'data-user-id' => "#{@question.user.id}"
   #main-message
     = I18n.t('quiz.question.who')
   = form_tag answer_quiz_path do
